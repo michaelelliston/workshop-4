@@ -2,8 +2,8 @@ import java.io.*;
 
 public class DealershipFileManager {
 
-    public Dealership getDealership() {
-        try (InputStream inputStream = getClass().getResourceAsStream("/inventory.csv")) {
+    public static Dealership getDealership() {
+        try (InputStream inputStream = DealershipFileManager.class.getResourceAsStream("/inventory.csv")) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
              String[] parts = bufferedReader.readLine().split("\\|");
