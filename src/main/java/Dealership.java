@@ -43,7 +43,6 @@ public class Dealership {
                 System.out.println(vehicle);
             }
         }
-
     }
 
     public void getVehiclesByYear(int min, int max) {
@@ -53,7 +52,6 @@ public class Dealership {
                 System.out.println(vehicle);
             }
         }
-
     }
 
     public void getVehiclesByColor(String color) {
@@ -63,7 +61,6 @@ public class Dealership {
                 System.out.println(vehicle);
             }
         }
-
     }
 
     public void getVehiclesByMileage(int min, int max) {
