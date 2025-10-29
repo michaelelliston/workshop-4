@@ -2,8 +2,9 @@ import java.io.*;
 
 public class DealershipFileManager {
 
-    public static Dealership getDealership() {
+    public Dealership getDealership() {
         try (InputStream inputStream = DealershipFileManager.class.getResourceAsStream("/inventory.csv")) {
+            assert inputStream != null; // Does this basically just say "trust me" and make the readers go through with their process regardless of if it possibly being null?
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
              String[] parts = bufferedReader.readLine().split("\\|");
