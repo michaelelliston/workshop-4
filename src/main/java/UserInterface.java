@@ -1,5 +1,7 @@
 import utilities.InputGetter;
 
+import java.util.ArrayList;
+
 public class UserInterface {
     private Dealership dealership;
 
@@ -18,6 +20,7 @@ public class UserInterface {
         String userInput = "";
         while (!userInput.equalsIgnoreCase("X")) {
             System.out.print("""
+                    \n
                     P) Find vehicles within a price range
                     M) Find vehicles by make / model
                     Y) Find vehicles by year range
@@ -28,14 +31,23 @@ public class UserInterface {
                     A) Add a vehicle
                     R) Remove a vehicle
                     
-                    X) Exit""");
+                    X) Exit
+                    
+                    """);
 
             userInput = InputGetter.getString("Please input the character that corresponds to your choice: ").toLowerCase();
 
             switch (userInput) {
+                case "l" -> printVehicles(dealership.getAllVehicles());
 
             }
         }
+    }
 
+    private void printVehicles(ArrayList<Vehicle> vehicles) {
+        for (Vehicle vehicle : vehicles) {
+            System.out.printf("\n%d|%d|%s|%s|%s|%s|%d|$%.2f", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+        }
+        InputGetter.getString("\n\nPlease input any character to continue: ");
     }
 }
