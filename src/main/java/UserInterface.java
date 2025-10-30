@@ -1,3 +1,5 @@
+import utilities.InputGetter;
+
 import java.util.Scanner;
 
 public class UserInterface {
@@ -32,10 +34,10 @@ public class UserInterface {
                     
                     X) Exit""");
 
-            userInput = myScanner.nextLine().trim();
+            userInput = InputGetter.getString("Please input the character that corresponds to your choice: ").toLowerCase();
 
             switch (userInput) {
-//                case "P", "p" -> dealership.getVehiclesByPrice();
+
             }
         }
 
