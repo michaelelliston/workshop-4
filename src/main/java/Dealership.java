@@ -20,56 +20,68 @@ public class Dealership {
         inventory.add(vehicle);
     }
 
-    public void getAllVehicles() {
+    public ArrayList<Vehicle> getAllVehicles() {
+        ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
         for (Vehicle vehicle : inventory) {
-            System.out.println(vehicle);
+            vehicles.add(vehicle);
         }
+        return vehicles;
     }
 
-    public void getVehiclesByPrice(double min, double max) {
+    public ArrayList<Vehicle> getVehiclesByPrice(double min, double max) {
+        ArrayList<Vehicle> vehiclesByPrice = new ArrayList<Vehicle>();
         for (Vehicle vehicle : inventory) {
             double vehiclePrice = vehicle.getPrice();
             if (vehiclePrice >= min && vehiclePrice <= max) {
-                System.out.println(vehicle);
+                vehiclesByPrice.add(vehicle);
             }
         }
+        return vehiclesByPrice;
     }
 
-    public void getVehiclesByMakeModel(String make, String model) {
+    public ArrayList<Vehicle> getVehiclesByMakeModel(String make, String model) {
+        ArrayList<Vehicle> vehiclesByMakeModel = new ArrayList<Vehicle>();
         for (Vehicle vehicle : inventory) {
             String vehicleModel = vehicle.getModel();
             String vehicleMake = vehicle.getMake();
             if (vehicleMake.equalsIgnoreCase(make) && vehicleModel.equalsIgnoreCase(model)){
-                System.out.println(vehicle);
+                vehiclesByMakeModel.add(vehicle);
             }
         }
+        return vehiclesByMakeModel;
     }
 
-    public void getVehiclesByYear(int min, int max) {
+    public ArrayList<Vehicle> getVehiclesByYear(int min, int max) {
+        ArrayList<Vehicle> vehiclesByYear = new ArrayList<Vehicle>();
         for (Vehicle vehicle : inventory) {
             int year = vehicle.year;
             if (year >= min && year <= max){
-                System.out.println(vehicle);
+                vehiclesByYear.add(vehicle);
             }
         }
+        return vehiclesByYear;
     }
 
-    public void getVehiclesByColor(String color) {
+    public ArrayList<Vehicle> getVehiclesByColor(String color) {
+        ArrayList<Vehicle> vehiclesByColor = new ArrayList<Vehicle>();
         for (Vehicle vehicle : inventory) {
             String vehicleColor = vehicle.getColor();
             if (color.equalsIgnoreCase(vehicleColor)) {
-                System.out.println(vehicle);
+                vehiclesByColor.add(vehicle);
             }
         }
+        return vehiclesByColor;
     }
 
-    public void getVehiclesByMileage(int min, int max) {
+    public ArrayList<Vehicle> getVehiclesByMileage(int min, int max) {
+        ArrayList<Vehicle> vehiclesByMileage = new ArrayList<Vehicle>();
         for (Vehicle vehicle : inventory) {
             int miles = vehicle.getOdometer();
             if (miles >= min && miles <= max) {
-                System.out.println(vehicle);
+                vehiclesByMileage.add(vehicle);
             }
         }
+        return vehiclesByMileage;
     }
 
     public void removeVehicle(Vehicle vehicle) {

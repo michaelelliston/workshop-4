@@ -1,11 +1,7 @@
 import utilities.InputGetter;
 
-import java.util.Scanner;
-
 public class UserInterface {
-
-    Scanner myScanner = new Scanner(System.in);
-    Dealership dealership;
+    private Dealership dealership;
 
     public UserInterface() {
 
