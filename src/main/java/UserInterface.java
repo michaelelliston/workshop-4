@@ -41,10 +41,30 @@ public class UserInterface {
                 case "m" -> processGetByMakeModelRequest();
                 case "y" -> processGetByYearRangeRequest();
                 case "c" -> processGetByColorRequest();
+                case "o" -> processGetByMileageRequest();
+                case "t" -> processGetByVehicleTypeRequest();
                 case "l" -> printVehicles(dealership.getAllVehicles());
+                case "a" -> processAddVehicleRequest();
 
             }
         }
+    }
+
+    private void processAddVehicleRequest() {
+
+    }
+
+    private void processGetByVehicleTypeRequest() {
+        String type = InputGetter.getString("Please enter the type of vehicle you are searching for: ");
+        ArrayList<Vehicle> vehiclesByType = dealership.getVehiclesByType(type);
+        printVehicles(vehiclesByType);
+    }
+
+    private void processGetByMileageRequest() {
+        int minMiles = InputGetter.getInt("Please enter the lower end of miles for your search range: ");
+        int maxMiles = InputGetter.getInt("Please enter the upper end of miles for your search range: ");
+        ArrayList<Vehicle> vehiclesByMile = dealership.getVehiclesByMileage(minMiles, maxMiles);
+        printVehicles(vehiclesByMile);
     }
 
     private void processGetByColorRequest() {

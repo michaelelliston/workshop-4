@@ -47,6 +47,17 @@ public class Dealership {
         return vehiclesByMakeModel;
     }
 
+    public ArrayList<Vehicle> getVehiclesByType(String searchType) {
+        ArrayList<Vehicle> vehiclesByType = new ArrayList<Vehicle>();
+        for (Vehicle vehicle : inventory) {
+            String vehicleType = vehicle.getVehicleType();
+            if (vehicleType.equalsIgnoreCase(searchType)) {
+                vehiclesByType.add(vehicle);
+            }
+        }
+        return vehiclesByType;
+    }
+
     public ArrayList<Vehicle> getVehiclesByYear(int min, int max) {
         ArrayList<Vehicle> vehiclesByYear = new ArrayList<Vehicle>();
         for (Vehicle vehicle : inventory) {
