@@ -22,6 +22,11 @@ public class Vehicle {
 
     }
 
+    @Override
+    public String toString() {
+        return String.format("VIN: %d|Year: %d|Make: %s|Model: %s|Type: %s|Color: %s|Odometer: %d|Price: $%.2f", getVin(), getYear(), getMake(), getModel(), getVehicleType(), getColor(), getOdometer(), getPrice());
+    }
+
     public int getVin() {
         return vin;
     }

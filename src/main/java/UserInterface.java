@@ -1,5 +1,6 @@
 import utilities.InputGetter;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UserInterface {
@@ -9,10 +10,9 @@ public class UserInterface {
 
     }
 
-    private Dealership init() {
+    private void init() {
         DealershipFileManager dealershipFileManager = new DealershipFileManager();
         this.dealership = dealershipFileManager.getDealership();
-        return this.dealership;
     }
 
     public void display() {
@@ -38,15 +38,37 @@ public class UserInterface {
             userInput = InputGetter.getString("Please input the character that corresponds to your choice: ").toLowerCase();
 
             switch (userInput) {
+                case "p" -> processGetByPriceRequest();
+                case "m" -> processGetByMakeModelRequest();
+                case "y" -> processGetByYearRangeRequest();
                 case "l" -> printVehicles(dealership.getAllVehicles());
 
             }
         }
     }
 
+    private void processGetByYearRangeRequest() {
+
+    }
+
+    private void processGetByMakeModelRequest() {
+        String make = InputGetter.getString("Please input your desired Make: ");
+        String model = InputGetter.getString("Please input your desired Model: ");
+        ArrayList<Vehicle> vehiclesByMakeModel = dealership.getVehiclesByMakeModel(make, model);
+        printVehicles(vehiclesByMakeModel);
+    }
+
+    private void processGetByPriceRequest() {
+        double minimum = InputGetter.getDouble("Please input your minimum price: ");
+        double maximum = InputGetter.getDouble("Please input your maximum price: ");
+        ArrayList<Vehicle> vehiclesByPrice = dealership.getVehiclesByPrice(minimum, maximum);
+        printVehicles(vehiclesByPrice);
+    }
+
     private void printVehicles(ArrayList<Vehicle> vehicles) {
+        System.out.println();
         for (Vehicle vehicle : vehicles) {
-            System.out.printf("\n%d|%d|%s|%s|%s|%s|%d|$%.2f", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+            System.out.println(vehicle.toString());
         }
         InputGetter.getString("\n\nPlease input any character to continue: ");
     }
