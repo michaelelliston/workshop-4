@@ -1,6 +1,5 @@
 import utilities.InputGetter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UserInterface {
@@ -41,14 +40,24 @@ public class UserInterface {
                 case "p" -> processGetByPriceRequest();
                 case "m" -> processGetByMakeModelRequest();
                 case "y" -> processGetByYearRangeRequest();
+                case "c" -> processGetByColorRequest();
                 case "l" -> printVehicles(dealership.getAllVehicles());
 
             }
         }
     }
 
-    private void processGetByYearRangeRequest() {
+    private void processGetByColorRequest() {
+        String color = InputGetter.getString("Please input your desired color: ");
+        ArrayList<Vehicle> vehiclesByColor = dealership.getVehiclesByColor(color);
+        printVehicles(vehiclesByColor);
+    }
 
+    private void processGetByYearRangeRequest() {
+        int yearStart = InputGetter.getInt("Please input the earlier year of your search range: ");
+        int yearEnd = InputGetter.getInt("Please input the later year of your search range: ");
+        ArrayList<Vehicle> vehiclesByYear = dealership.getVehiclesByYear(yearStart, yearEnd);
+        printVehicles(vehiclesByYear);
     }
 
     private void processGetByMakeModelRequest() {

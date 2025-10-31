@@ -21,11 +21,7 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getAllVehicles() {
-        ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-        for (Vehicle vehicle : inventory) {
-            vehicles.add(vehicle);
-        }
-        return vehicles;
+        return new ArrayList<Vehicle>(inventory);
     }
 
     public ArrayList<Vehicle> getVehiclesByPrice(double min, double max) {
