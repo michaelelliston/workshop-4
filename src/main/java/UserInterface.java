@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class UserInterface {
     private Dealership dealership;
+    private DealershipFileManager dealershipFileManager;
 
     public UserInterface() {
 
     }
 
     private void init() {
-        DealershipFileManager dealershipFileManager = new DealershipFileManager();
+        dealershipFileManager = new DealershipFileManager();
         this.dealership = dealershipFileManager.getDealership();
     }
 
@@ -45,13 +46,36 @@ public class UserInterface {
                 case "t" -> processGetByVehicleTypeRequest();
                 case "l" -> printVehicles(dealership.getAllVehicles());
                 case "a" -> processAddVehicleRequest();
+                case "r" -> processRemoveVehicleRequest();
 
             }
         }
     }
 
-    private void processAddVehicleRequest() {
+    private void processRemoveVehicleRequest() {
+        ArrayList<Vehicle> vehicles = dealership.getAllVehicles();
+        int i = 1;
+        for (Vehicle vehicle : vehicles) {
+            System.out.printf("%d) %s\n", i, vehicle.toString());
+            i++;
+        }
+        int userSelection = InputGetter.getInt("\nPlease select the number which corresponds to the vehicle you wish to remove: ");
+        dealership.removeVehicle(vehicles.get(userSelection - 1));
+        dealershipFileManager.saveDealership(dealership);
+    }
 
+    private void processAddVehicleRequest() {
+        int vin = InputGetter.getInt("Please enter the vehicle's VIN: ");
+        int year = InputGetter.getInt("Please enter the year the vehicle was manufactured: ");
+        String make = InputGetter.getString("Please enter the vehicle's make: ");
+        String model = InputGetter.getString("Please enter the vehicle's model: ");
+        String type = InputGetter.getString("Please enter the vehicle's type: ");
+        String color = InputGetter.getString("Please enter the vehicle's color: ");
+        int odometer = InputGetter.getInt("Please enter the vehicle's odometer value (mileage): ");
+        double price = InputGetter.getInt("Please enter the vehicle's price: ");
+        Vehicle vehicle = new Vehicle(vin, year, make, model, type, color, odometer, price);
+        dealership.addVehicle(vehicle);
+        dealershipFileManager.saveDealership(dealership);
     }
 
     private void processGetByVehicleTypeRequest() {

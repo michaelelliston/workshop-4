@@ -5,6 +5,19 @@ public class Dealership {
     String name;
     String address;
     String phoneNumber;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     ArrayList<Vehicle> inventory;
 
     public Dealership(String name, String address, String phoneNumber) {
@@ -92,6 +105,6 @@ public class Dealership {
     }
 
     public void removeVehicle(Vehicle vehicle) {
-
+        inventory.remove(vehicle);
     }
 }
