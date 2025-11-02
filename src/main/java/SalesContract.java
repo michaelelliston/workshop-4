@@ -64,11 +64,11 @@ public class SalesContract extends Contract {
 
             if (totalPrice >= 10000) {
 
-                return (totalPrice / 48) * .0425;
+                return (totalPrice / 48) + ((totalPrice / 48) * 0.0425);
 
             } else {
 
-                return (totalPrice / 24) * .0525;
+                return (totalPrice / 24) + ((totalPrice / 24) * .0525);
 
             }
         } else {
