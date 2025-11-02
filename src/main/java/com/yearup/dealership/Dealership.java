@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Dealership {
 
-    String name;
-    String address;
-    String phoneNumber;
+    private final String name;
+    private final String address;
+    private final String phoneNumber;
 
     public String getName() {
         return name;
@@ -76,7 +76,7 @@ public class Dealership {
     public ArrayList<Vehicle> getVehiclesByYear(int min, int max) {
         ArrayList<Vehicle> vehiclesByYear = new ArrayList<Vehicle>();
         for (Vehicle vehicle : inventory) {
-            int year = vehicle.year;
+            int year = vehicle.getYear();
             if (year >= min && year <= max){
                 vehiclesByYear.add(vehicle);
             }

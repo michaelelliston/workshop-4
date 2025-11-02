@@ -2,12 +2,12 @@ package com.yearup.dealership;
 
 public class LeaseContract extends Contract{
 
-    double expectedEndingValue;
-    double leaseFee;
-    double monthlyPayment;
+    private double expectedEndingValue;
+    private double leaseFee;
 
-    public LeaseContract(String date, String customerName, String customerEmail, Vehicle vehicle, double price, double monthlyPayment) {
-        super(date, customerName, customerEmail, vehicle, price, monthlyPayment);
+    public LeaseContract(String date, String customerName, String customerEmail, Vehicle vehicle, double price) {
+        super(date, customerName, customerEmail, vehicle, price);
+        this.vehicle = vehicle;
     }
 
     public double getExpectedEndingValue() {
@@ -20,10 +20,6 @@ public class LeaseContract extends Contract{
 
     public double getLeaseFee() {
         return this.getTotalPrice() * .07;
-    }
-
-    public void setLeaseFee(double leaseFee) {
-        this.leaseFee = leaseFee;
     }
 
     @Override

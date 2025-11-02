@@ -1,31 +1,22 @@
 package com.yearup.dealership;
 
 public class SalesContract extends Contract {
-    double salesTaxAmount;
-    double recordingFee;
-    double processingFee; // Should be $295 for vehicles under $10,000 and $495 for all others.
-    boolean isFinanced;
-    double monthlyPayment;
+    private final double recordingFee;
+    private boolean isFinanced;
 
-    public SalesContract(String date, String customerName, String customerEmail, Vehicle vehicle, double price, double monthlyPayment) {
-        super(date, customerName, customerEmail, vehicle, price, monthlyPayment);
+    public SalesContract(String date, String customerName, String customerEmail, Vehicle vehicle, double price, boolean isFinanced) {
+        super(date, customerName, customerEmail, vehicle, price);
+        this.vehicle = vehicle;
         this.recordingFee = 100;
+        this.isFinanced = isFinanced;
     }
 
     public double getSalesTaxAmount() {
         return this.totalPrice * .05;
     }
 
-    public void setSalesTaxAmount(double salesTaxAmount) {
-        this.salesTaxAmount = salesTaxAmount;
-    }
-
     public double getRecordingFee() {
         return recordingFee;
-    }
-
-    public void setRecordingFee(double recordingFee) {
-        this.recordingFee = recordingFee;
     }
 
     public double getProcessingFee() {
@@ -34,10 +25,6 @@ public class SalesContract extends Contract {
         } else {
             return 295;
         }
-    }
-
-    public void setProcessingFee(double processingFee) {
-        this.processingFee = processingFee;
     }
 
     public String isFinanced() {

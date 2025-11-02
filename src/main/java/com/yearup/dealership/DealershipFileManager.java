@@ -23,7 +23,9 @@ public class DealershipFileManager {
             for (line = bufferedReader.readLine(); line != null; line = bufferedReader.readLine()) {
 
                 String[] vehicleParts = line.split("\\|");
-                Vehicle vehicle = new Vehicle(Integer.parseInt(vehicleParts[0]), Integer.parseInt(vehicleParts[1]), vehicleParts[2], vehicleParts[3], vehicleParts[4], vehicleParts[5], Integer.parseInt(vehicleParts[6]), Double.parseDouble(vehicleParts[7]));
+                Vehicle vehicle = new Vehicle(Integer.parseInt(vehicleParts[0]), Integer.parseInt(vehicleParts[1]), vehicleParts[2], vehicleParts[3], vehicleParts[4], vehicleParts[5],
+                        Integer.parseInt(vehicleParts[6]), Double.parseDouble(vehicleParts[7]));
+
                 dealership.addVehicle(vehicle);
 
             }
