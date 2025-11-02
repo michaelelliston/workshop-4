@@ -1,3 +1,5 @@
+package com.yearup.dealership;
+
 public class Vehicle {
 
     int vin;

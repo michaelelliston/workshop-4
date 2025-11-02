@@ -1,3 +1,5 @@
+package com.yearup.dealership;
+
 import java.util.ArrayList;
 
 public class Dealership {

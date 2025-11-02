@@ -1,3 +1,5 @@
+package com.yearup.dealership;
+
 import utilities.InputGetter;
 
 import java.util.ArrayList;

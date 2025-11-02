@@ -1,20 +1,23 @@
+package com.yearup.dealership;
+
 public class SalesContract extends Contract {
-    double salesTax = .05;
-    double recordingFee = 100;
+    double salesTaxAmount;
+    double recordingFee;
     double processingFee; // Should be $295 for vehicles under $10,000 and $495 for all others.
     boolean isFinanced;
     double monthlyPayment;
 
     public SalesContract(String date, String customerName, String customerEmail, Vehicle vehicle, double price, double monthlyPayment) {
         super(date, customerName, customerEmail, vehicle, price, monthlyPayment);
+        this.recordingFee = 100;
     }
 
-    public double getSalesTax() {
-        return salesTax;
+    public double getSalesTaxAmount() {
+        return this.totalPrice * .05;
     }
 
-    public void setSalesTax(double salesTax) {
-        this.salesTax = salesTax;
+    public void setSalesTaxAmount(double salesTaxAmount) {
+        this.salesTaxAmount = salesTaxAmount;
     }
 
     public double getRecordingFee() {
@@ -26,15 +29,23 @@ public class SalesContract extends Contract {
     }
 
     public double getProcessingFee() {
-        return processingFee;
+        if (this.totalPrice >= 10000) {
+            return 495;
+        } else {
+            return 295;
+        }
     }
 
     public void setProcessingFee(double processingFee) {
         this.processingFee = processingFee;
     }
 
-    public boolean isFinanced() {
-        return isFinanced;
+    public String isFinanced() {
+        if (isFinanced) {
+            return "YES";
+        } else {
+            return "NO";
+        }
     }
 
     public void setIsFinanced(boolean isFinanced) {
@@ -43,22 +54,19 @@ public class SalesContract extends Contract {
 
     @Override
     public double getTotalPrice() {
-        double processingFee;
 
-        double totalPrice = this.totalPrice + (this.totalPrice * this.salesTax) + this.recordingFee;
+        double totalPrice = this.totalPrice + this.getSalesTaxAmount() + this.recordingFee;
 
-        if (totalPrice <= 10000) {
-            processingFee = 295;
-        } else {
-            processingFee = 495;
-        }
-
-        return totalPrice + processingFee;
+        return totalPrice + this.getProcessingFee();
     }
 
     @Override
     public double getMonthlyPayment() {
         if (isFinanced) {
+
+            if (this.monthlyPayment > 0) {
+                return this.monthlyPayment;
+            }
 
             double totalPrice = this.getTotalPrice();
 
@@ -75,6 +83,4 @@ public class SalesContract extends Contract {
             return 0;
         }
     }
-
-
 }
