@@ -90,7 +90,7 @@ public class UserInterface {
     private void processLeaseContractRequest() {
         String date = InputGetter.getString("Please enter the contract's creation date: ");
         String customerName = InputGetter.getString("Please enter the customer's name: ");
-        String customerEmail = InputGetter.getString("Please enter the costumer's email address: ");
+        String customerEmail = InputGetter.getString("Please enter the customer's email address: ");
         Vehicle vehicle = processVehicleSelectionRequest();
 
         LeaseContract leaseContract = new LeaseContract(date, customerName, customerEmail, vehicle, vehicle.getPrice());
@@ -103,7 +103,7 @@ public class UserInterface {
         boolean isFinanced = false;
         String date = InputGetter.getString("Please enter the contract's creation date: ");
         String customerName = InputGetter.getString("Please enter the customer's name: ");
-        String customerEmail = InputGetter.getString("Please enter the costumer's email address: ");
+        String customerEmail = InputGetter.getString("Please enter the customer's email address: ");
         Vehicle vehicle = processVehicleSelectionRequest();
 
 
