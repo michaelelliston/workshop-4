@@ -1,16 +1,16 @@
 package com.yearup.dealership;
 
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 
 public class ContractFileManager {
+    private final String fileName = "src/main/resources/contracts.csv";
+    private ArrayList<Contract> contracts;
 
     public void saveContract(Contract contract) {
         String formattedString;
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/contracts.csv", true))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName, true))) {
 
             if (contract instanceof SalesContract) {
                 formattedString = String.format("\nSALE|%s|%s|%s|%d|%d|%s|%s|%s|%s|%d|%.2f|%.2f|%.2f|%.2f|%.2f|%s|%.2f",
@@ -36,6 +36,40 @@ public class ContractFileManager {
         } catch (IOException e) {
             System.err.println("An error occurred: " + e);
         }
+    }
+ // TODO: Fix this method
+    public ArrayList<Contract> readContracts() {
 
+        String[] parts;
+        try (FileReader fileReader = new FileReader(fileName)) {
+
+            String line = "";
+            BufferedReader bufferedReader = new BufferedReader((fileReader));
+
+            line = bufferedReader.readLine();
+
+            parts = line.split("\\|");
+
+            if (parts[0].equals("SALE")) {
+                Vehicle vehicle = new Vehicle(Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[6], parts[7], parts[8], parts[9], Integer.parseInt(parts[10]), Double.parseDouble(parts[11]));
+                SalesContract salesContract = new SalesContract(parts[1], parts[2], parts[3], vehicle, Double.parseDouble(parts[12]), Boolean.getBoolean((parts[13])));
+                contracts.add(salesContract);
+            } else {
+                Vehicle vehicle = new Vehicle(Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[6], parts[7], parts[8], parts[9], Integer.parseInt(parts[10]), Double.parseDouble(parts[11]));
+                LeaseContract leaseContract = new LeaseContract(parts[1], parts[2], parts[3], vehicle, Double.parseDouble(parts[15]));
+                contracts.add(leaseContract);
+            }
+
+            return contracts;
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found!: " + e);
+            return null;
+        } catch (IOException e) {
+            System.err.println("An error occurred: " + e);
+            return null;
+        }
     }
 }
+
+

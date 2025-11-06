@@ -38,6 +38,7 @@ public class UserInterface {
                     8) Add a vehicle
                     9) Remove a vehicle
                     10) Add a Contract
+                    11) Admin menu
                     
                     99) Exit
                     
@@ -56,6 +57,8 @@ public class UserInterface {
                 case 8 -> processAddVehicleRequest();
                 case 9 -> processRemoveVehicleRequest();
                 case 10 -> displayContractsMenu();
+                case 11 -> {AdminUserInterface adminUserInterface = new AdminUserInterface();
+                adminUserInterface.adminLogin();}
 
             }
         }
